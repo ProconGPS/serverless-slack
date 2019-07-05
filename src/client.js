@@ -153,7 +153,7 @@ class Client {
     if (typeof(message) === 'string') message = { dialog: message };
 
     // set defaults when available
-    message = Object.assign({ token: this.token, trigger_id: this.trigger_id, channel: this.channel }, message);
+    message = Object.assign({ token: this.token, trigger_id: this.trigger_id }, message);
     // convert json except when passing in a url
     console.log(message);
     if (!endPoint.match(/^http/i)) message = qs.stringify(message);
