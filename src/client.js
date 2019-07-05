@@ -157,7 +157,7 @@ class Client {
     // convert json except when passing in a url
     console.log(message);
     if (!endPoint.match(/^http/i)) message = qs.stringify(message);
-    result = this.api.post(endPoint, message).then(this.getData);
+    result = this.api.post(endPoint, message).then(this.getData).catch((err) => {return err});
     console.log(result)
     return result
   }
