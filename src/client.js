@@ -173,6 +173,7 @@ class Client {
   getData(response) {
     let data = response.data;
 
+    console.log(response)
     if (data.ok) {
       delete data.ok;
       return Promise.resolve(data);
