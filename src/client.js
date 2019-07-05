@@ -148,14 +148,15 @@ class Client {
    */
   sendDialog(message) {
     var endPoint = 'dialog.open';
+    console.log(this.trigger_id);
     // convert the string message to a message object
     if (typeof(message) === 'string') message = { dialog: message };
 
     // set defaults when available
     message = Object.assign({ token: this.token, trigger_id: this.trigger_id, channel: this.channel }, message);
-
     // convert json except when passing in a url
     if (!endPoint.match(/^http/i)) message = qs.stringify(message);
+    console.log(message);
     return this.api.post(endPoint, message).then(this.getData);
   }
 
