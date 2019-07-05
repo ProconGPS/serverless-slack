@@ -147,7 +147,7 @@ class Client {
    * @return {Promise} A promise with the API response
    */
   sendDialog(message) {
-    var endPoint = 'dialog.open';
+    var endPoint = this.response_url;
     console.log(this.trigger_id);
     // convert the string message to a message object
     if (typeof(message) === 'string') message = { dialog: message };
