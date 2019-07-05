@@ -147,7 +147,7 @@ class Client {
    * @return {Promise} A promise with the API response
    */
   sendDialog(message) {
-    var endPoint = this.response_url;
+    var endPoint = 'https://slack.com/api/dialog.open';
     console.log(this.trigger_id);
     // convert the string message to a message object
     if (typeof(message) === 'string') message = { dialog: message };
@@ -155,8 +155,8 @@ class Client {
     // set defaults when available
     message = Object.assign({ token: this.token, trigger_id: this.trigger_id, channel: this.channel }, message);
     // convert json except when passing in a url
-    if (!endPoint.match(/^http/i)) message = qs.stringify(message);
     console.log(message);
+    if (!endPoint.match(/^http/i)) message = qs.stringify(message);
     return this.api.post(endPoint, message).then(this.getData);
   }
 
