@@ -162,7 +162,42 @@ class Client {
     return result
   }
 
+  openDialog(payload) {
+    console.log("PAYLOAD")
+    console.log(payload)
+    const dialogData = {
+      token: this.token ,
+      trigger_id: payload.trigger_id,
+      dialog: JSON.stringify({
+        title: 'Open ticket!',
+        callback_id: 'ticket_click',
+        submit_label: 'Open',
+        elements: [
+          {
+            label: 'Message Text',
+            type: 'textarea',
+            name: 'message',
+            value: 'enter a description of your problem here'
+          },
+          {
+            label: 'Importance',
+            type: 'select',
+            name: 'importance',
+            value: '3',
+            options: [
+              { label: 'High', value: '1' },
+              { label: 'Medium', value: '3' },
+              { label: 'Low', value: '4' }
+            ],
+          },
+        ]
+      })
+    };
 
+    // open the dialog by calling dialogs.open method and sending the payload
+    const promise = axios.post(`${apiUrl}/dialog.open`, qs.stringify(dialogData));
+    return promise;
+  };
 
   /**
    * OK Check for Responses
